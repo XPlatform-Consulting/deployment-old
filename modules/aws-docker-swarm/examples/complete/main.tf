@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "${var.aws_region}"
 }
 
 data "aws_vpc" "default" {
@@ -12,8 +12,8 @@ data "aws_subnet_ids" "all" {
 
 module "aws-docker-swarm" {
   source = "../../"
-  vpc_id = "vpc-de3d97a5"
-  ec2_subnet_id = "subnet-a027d2ea"
+  vpc_id = "${var.vpc_id}"
+  ec2_subnet_id = "${var.subnet_1}"
   ec2_master_name = "swarm_master"
   ec2_worker_name = "swarm_worker"
   master_count = "1"
