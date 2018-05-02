@@ -110,9 +110,9 @@ variable "vidi_cluster_identifier" {
 variable "vidi_engine_type" {
   description = "The name of the database engine to be used for this DB cluster. aurora-postgresql or aurora"
 }
-variable "vidi_engine_version" {
-  description = "The database engine version."
-}
+#variable "vidi_engine_version" {
+#  description = "The database engine version."
+#}
 variable "vidi_database_name" {
   description = "Name for an automatically created database on cluster creation."
 }
@@ -122,10 +122,10 @@ variable "vidi_master_username" {
 variable "vidi_master_password" {
   description = "Password for the master DB user."
 }
-variable "vidi_availability_zones" {
-  type = "list"
-  description = "A list of EC2 Availability Zones that instances in the DB cluster can be created in."
-}
+#variable "vidi_availability_zones" {
+#  type = "list"
+#  description = "A list of EC2 Availability Zones that instances in the DB cluster can be created in."
+#}
 variable "vidi_instance_count" {
   description = "The number of instaces to run"
 }

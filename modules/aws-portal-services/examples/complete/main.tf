@@ -54,11 +54,11 @@ module "aws-portal-services" {
   subnet_group_name = "envoi-portaldb"
 
   #Vidispine
-  vidi_availability_zones = ["us-east-1a", "us-east-1b"]
+  #vidi_availability_zones = ["us-east-1a", "us-east-1b"]
   vidi_cluster_identifier = "envoi-vididb"
   vidi_database_name = "vididb"
   vidi_engine_type = "aurora-postgresql"
-  vidi_engine_version = "9.6"
+  #vidi_engine_version = "9.6"
   vidi_instance_count = 2
   vidi_master_password = "${var.vidi_master_password}"
   vidi_master_username = "${var.vidi_master_username}"
