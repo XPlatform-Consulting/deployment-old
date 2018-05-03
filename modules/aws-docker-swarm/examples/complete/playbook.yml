@@ -1,5 +1,5 @@
 ---
-  - name: Install Pyhton
+  - name: Install Python
     hosts: all
     gather_facts: False
     remote_user: ubuntu
