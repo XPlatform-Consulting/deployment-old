@@ -1,3 +1,6 @@
+data "aws_caller_identity" "current" {}
+data "aws_region" "current" {}
+
 resource "aws_elasticsearch_domain" "default" {
   domain_name           = "${var.elasticsearch_domain_name}"
   elasticsearch_version = "${var.elasticsearch_version}"
@@ -38,7 +41,7 @@ resource "aws_elasticsearch_domain" "default" {
       "Action": [
         "es:*"
       ],
-      "Resource": "arn:aws:es:us-east-1:524540001196:domain/${var.elasticsearch_domain_name}/*"
+      "Resource": "arn:aws:es:${data.aws_region.current.id}:${data.aws_caller_identity.current.account_id}:domain/${var.elasticsearch_domain_name}/*"
     }
   ]
 }
