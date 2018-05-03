@@ -4,7 +4,7 @@
     gather_facts: False
     remote_user: ubuntu
     tasks:
-      - name: Install python
+      - name: Install Python
         raw: sudo bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qy python-minimal)"
 
   - name: Install Docker
