@@ -76,7 +76,7 @@ output "envoi_portal_security_group" {
   value = "${module.aws-portal-services.envoi_portal_security_group}"
 }
 output "portal_elasticsearch_endpoint" {
-  value = "${module.aws-portal-services.portal_elasticache_endpoint}"
+  value = "${module.aws-portal-services.portal_elasticsearch_endpoint}"
 }
 output "portal_elasticache_endpoint" {
   value = "${module.aws-portal-services.portal_elasticache_endpoint}"
