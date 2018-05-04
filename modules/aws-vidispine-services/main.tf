@@ -27,7 +27,7 @@ resource "aws_security_group_rule" "vidispine_elasticsearch_cluster_ingress_01" 
   type                     = "ingress"
   from_port                = "-0"
   to_port                  = "-0"
-  protocol                 = "tcp"
+  protocol                 = "-1"
   security_group_id        = "${aws_security_group.vidispine_elasticsearch_cluster.id}"
   source_security_group_id = "${aws_security_group.envoi_vidispine.id}"
 }
@@ -37,7 +37,7 @@ resource "aws_security_group_rule" "vidispine_rds_cluster_ingress_01" {
   type                     = "ingress"
   from_port                = 5432
   to_port                  = 5432
-  protocol                 = "tcp"
+  protocol                 = "-1"
   security_group_id        = "${aws_security_group.vidispine_rds_cluster.id}"
   source_security_group_id = "${aws_security_group.envoi_vidispine.id}"
 }
@@ -46,7 +46,7 @@ resource "aws_security_group_rule" "vidispine_amazonmq_ingress_01" {
   type = "ingress"
   from_port = "-0"
   to_port = "-0"
-  protocol = "tcp"
+  protocol = "-1"
   security_group_id = "${aws_security_group.vidispine_amazonmq.id}"
   source_security_group_id = "${aws_security_group.envoi_vidispine.id}"
 }
