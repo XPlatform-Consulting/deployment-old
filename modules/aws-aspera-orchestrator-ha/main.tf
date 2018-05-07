@@ -1,5 +1,5 @@
 //Security Groups
-resource "aws_security_group" "envoi_orchestrator_ha" {
+resource "aws_security_group" "orchestrator_ha" {
   vpc_id      = "${var.vpc_id}"
   description = "Orchestrator App security group."
   name        = "Orchestrator App security group."
@@ -25,7 +25,7 @@ resource "aws_security_group_rule" "aurora_ingress_01" {
   to_port                  = 5432
   protocol                 = "tcp"
   security_group_id        = "${aws_security_group.orchestrator_aurora.id}"
-  source_security_group_id = "${aws_security_group.envoi_orchestrator_ha.id}"
+  source_security_group_id = "${aws_security_group.orchestrator_ha.id}"
 }
 resource "aws_security_group_rule" "elb_ingress_01" {
   from_port = 80
@@ -112,7 +112,7 @@ module "aws-ec2" {
   instance_type = "${var.ec2_instace_type}"
   key_name = "${var.ec2_key_name}"
   monitoring = "true"
-  vpc_security_group_ids = ["${aws_security_group.envoi_orchestrator_ha.id}"]
+  vpc_security_group_ids = ["${aws_security_group.orchestrator_ha.id}"]
   subnet_id = "${element(var.subnets, 0)}"
 }
 

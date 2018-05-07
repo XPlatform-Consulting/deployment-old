@@ -1,5 +1,5 @@
-output "envoi_vidispine_security_group" {
-  value = "${aws_security_group.envoi_vidispine.id}"
+output "vidispine_security_group" {
+  value = "${aws_security_group.vidispine.id}"
 }
 output "elasticsearch_cluster_security_group" {
   value = "${aws_security_group.vidispine_elasticsearch_cluster.id}"

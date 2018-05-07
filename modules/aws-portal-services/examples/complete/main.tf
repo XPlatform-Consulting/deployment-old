@@ -16,7 +16,7 @@ module "aws-portal-services" {
   private-subnets = ["${var.subnet_1}", "${var.subnet_2}"]
 
   #Portal Elasticsearch
-  elasticsearch_domain_name = "envoi-portal"
+  elasticsearch_domain_name = "portal"
   elasticsearch_instnace_type = "t2.small.elasticsearch"
   elasticsearch_ebs_enabled = true
   elasticsearch_volume_type = "gp2"
@@ -27,35 +27,35 @@ module "aws-portal-services" {
 
   #Portal Elasticache
   elasticache_cluster_port = "11211"
-  elasticache_subnet_group = "envoi-elasticache-subnet-group"
-  elasticache_cluser_id = "envoi-elasticcache"
+  elasticache_subnet_group = "elasticache-subnet-group"
+  elasticache_cluser_id = "elasticcache"
   elasticache_node_type = "cache.t2.micro"
   num_cache_nodes = 1
   parameter_group_name = "default.memcached1.4"
 
   #Activiti RDS Cluster
-  activiti_cluster_identifier = "envoi-actvitidb"
+  activiti_cluster_identifier = "actvitidb"
   activiti_database_name = "activitidb"
   activiti_engine_type = "aurora-postgresql"
   activiti_instance_count = 2
   activiti_master_password = "${var.activiti_rds_master_password}"
   activiti_master_username = "${var.activiti_rds_master_username}"
   activiti_rds_instance_class = "db.r4.large"
-  activiti_subnet_group_name = "envoi-activitidb"
+  activiti_subnet_group_name = "activitidb"
 
   #Portal RDS Cluster
-  cluster_identifier = "envoi-portaldb"
+  cluster_identifier = "portaldb"
   engine_type = "aurora-postgresql"
   database_name = "portaldb"
   master_username = "${var.portal_rds_master_username}"
   master_password = "${var.portal_rds_master_password}"
   instance_count = 2
   rds_instance_class = "db.r4.large"
-  subnet_group_name = "envoi-portaldb"
+  subnet_group_name = "portaldb"
 
   #Vidispine
   #vidi_availability_zones = ["us-east-1a", "us-east-1b"]
-  vidi_cluster_identifier = "envoi-vididb"
+  vidi_cluster_identifier = "vididb"
   vidi_database_name = "vididb"
   vidi_engine_type = "aurora-postgresql"
   #vidi_engine_version = "9.6"
@@ -63,7 +63,7 @@ module "aws-portal-services" {
   vidi_master_password = "${var.vidi_rds_master_password}"
   vidi_master_username = "${var.vidi_rds_master_username}"
   vidi_rds_instance_class = "db.r4.large"
-  vidi_subnet_group_name = "envoi-vididb"
+  vidi_subnet_group_name = "vididb"
   vidi_broker_name = "vidispine-mq"
   vidi_broker_instance_type = "mq.t2.micro"
   vidi_broker_username = "${var.vidi_broker_username}"
@@ -72,8 +72,8 @@ module "aws-portal-services" {
 }
 
 
-output "envoi_portal_security_group" {
-  value = "${module.aws-portal-services.envoi_portal_security_group}"
+output "portal_security_group" {
+  value = "${module.aws-portal-services.portal_security_group}"
 }
 output "portal_elasticsearch_endpoint" {
   value = "${module.aws-portal-services.portal_elasticsearch_endpoint}"
@@ -84,8 +84,8 @@ output "portal_elasticache_endpoint" {
 output "portal_rds_cluster_endpoint" {
   value = "${module.aws-portal-services.portal_rds_cluster_endpoint}"
 }
-output "envoi_vidispine_security_group" {
-  value = "${module.aws-portal-services.envoi_vidispine_security_group}"
+output "vidispine_security_group" {
+  value = "${module.aws-portal-services.vidispine_security_group}"
 }
 output "vidi_rds_cluster_endpoint" {
   value = "${module.aws-portal-services.vidi_rds_cluster_endpoint}"

@@ -9,7 +9,7 @@ variable "private_subnet_ids" {
 #RDS Cluster
 variable "vidi_cluster_identifier" {
   description = "Cluster Identifier"
-  default = "envoi-vididb"
+  default = "vididb"
 }
 variable "vidi_database_name" {
   description = "Name for an automatically created database on cluster creation."
@@ -31,7 +31,7 @@ variable "vidi_rds_instance_class" {
 }
 variable "vidi_subnet_group_name" {
   description = "The name of the DB subnet group."
-  default = "envoi-vididb"
+  default = "vididb"
 }
 
 #Amazon MQ

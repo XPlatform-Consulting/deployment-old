@@ -1,4 +1,4 @@
-resource "aws_mq_broker" "envoi-vidispine-mq" {
+resource "aws_mq_broker" "vidispine-mq" {
   broker_name = "${var.broker_name}"
   engine_type = "${var.broker_type}"
   engine_version = "${var.broker_version}"

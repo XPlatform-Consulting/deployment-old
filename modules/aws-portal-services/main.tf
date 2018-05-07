@@ -1,4 +1,4 @@
-resource "aws_security_group" "envoi_portal" {
+resource "aws_security_group" "portal" {
   vpc_id      = "${var.vpc_id}"
   description = "Portal App security group."
   name        = "Portal App security group"
@@ -29,7 +29,7 @@ resource "aws_security_group_rule" "elasticache_cluster_ingress_01" {
   to_port                  = "${var.elasticache_cluster_port}"
   protocol                 = "-1"
   security_group_id        = "${aws_security_group.portal_elasticache_cluster.id}"
-  source_security_group_id = "${aws_security_group.envoi_portal.id}"
+  source_security_group_id = "${aws_security_group.portal.id}"
 }
 
 resource "aws_security_group_rule" "elasticsearch_cluster_ingress_01" {
@@ -39,7 +39,7 @@ resource "aws_security_group_rule" "elasticsearch_cluster_ingress_01" {
   to_port                  = "-0"
   protocol                 = "-1"
   security_group_id        = "${aws_security_group.portal_elasticsearch_cluster.id}"
-  source_security_group_id = "${aws_security_group.envoi_portal.id}"
+  source_security_group_id = "${aws_security_group.portal.id}"
 }
 
 resource "aws_security_group_rule" "rds_cluster_ingress_01" {
@@ -49,7 +49,7 @@ resource "aws_security_group_rule" "rds_cluster_ingress_01" {
   to_port                  = 5432
   protocol                 = "-1"
   security_group_id        = "${aws_security_group.portal_rds_cluster.id}"
-  source_security_group_id = "${aws_security_group.envoi_portal.id}"
+  source_security_group_id = "${aws_security_group.portal.id}"
 }
 
 
