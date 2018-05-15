@@ -60,7 +60,7 @@ module "elb" {
   source  = "terraform-aws-modules/elb/aws"
   version = "1.2.0"
   name  = "${var.elb_name}"
-  subnets = ["${var.subnets}"]
+  subnets = ["${var.subnet_1}"]
   security_groups = ["${aws_security_group.orchestrator_elb.id}"]
   internal = false
 
@@ -84,8 +84,8 @@ module "elb" {
   ]
 
   // ELB attachments
-  number_of_instances = "${var.ec2_instace_count}"
-  instances           = ["${module.aws-ec2.id}"]
+  number_of_instances = "${var.swarm_worker_count + 1}"
+  instances           = ["${module.aws-docker-swarm.workers_id}", "${module.aws-docker-swarm.masters_id}"]
 }
 
 module "aws-aurora" {
@@ -99,20 +99,18 @@ module "aws-aurora" {
   instance_count = "${var.aurora_instance_count}"
   instance_class = "${var.aurora_instance_class}"
   subnet_group_name = "${var.aurora_subnet_group_name}"
-  private-subnets = ["${var.subnets}"]
+  private-subnets = ["${var.subnet_1}", "${var.subnet_2}"]
 }
 
-module "aws-ec2" {
-  source  = "terraform-aws-modules/ec2-instance/aws"
-  version = "1.3.0"
-
-  name = "${var.ec2_name}"
-  instance_count = "${var.ec2_instace_count}"
-  ami = "${var.ec2_ami}"
-  instance_type = "${var.ec2_instace_type}"
-  key_name = "${var.ec2_key_name}"
-  monitoring = "true"
-  vpc_security_group_ids = ["${aws_security_group.orchestrator_ha.id}"]
-  subnet_id = "${element(var.subnets, 0)}"
+module "aws-docker-swarm"  {
+  source = "../aws-docker-swarm"
+  vpc_id = "${var.vpc_id}"
+  ec2_subnet_id = "${var.subnet_1}"
+  ec2_master_name = "${var.swarm_master_name}"
+  ec2_worker_name = "${var.swarm_worker_name}"
+  master_count = "1"
+  worker_count= "${var.swarm_worker_count}"
+  ec2_instace_type = "${var.swarm_instance_type}"
+  ec2_key_name = "${var.swarm_key_name}"
+  security_group_ids = ["${aws_security_group.orchestrator_ha.id}"]
 }
-

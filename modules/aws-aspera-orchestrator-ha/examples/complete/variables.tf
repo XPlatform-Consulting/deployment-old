@@ -1,0 +1,17 @@
+variable "aws_region" {}
+variable "vpc_id" {}
+variable "subnet_1" {}
+variable "subnet_2" {}
+variable "aurora_cluster_identifier" {}
+variable "aurora_database_name" {}
+variable "aurora_master_username" {}
+variable "aurora_master_password" {}
+variable "aurora_instance_class" {}
+variable "aurora_instance_count" {}
+variable "aurora_subnet_group_name" {}
+variable "elb_name" {}
+variable "swarm_master_name" {}
+variable "swarm_worker_name" {}
+variable "swarm_worker_count" {}
+variable "swarm_instance_type" {}
+variable "swarm_key_name" {}

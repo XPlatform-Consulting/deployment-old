@@ -1,0 +1,17 @@
+aws_region = "us-east-2"
+vpc_id = "vpc-7e4fa517"
+subnet_1 = "subnet-37dc2f5e"
+subnet_2 = "subnet-812923f9"
+aurora_cluster_identifier = "orchestrator-test"
+aurora_database_name = "orchestrator"
+aurora_master_username = "orchestrator"
+aurora_master_password = "orchestrator123"
+aurora_instance_class = "db.t2.small"
+aurora_instance_count = 2
+aurora_subnet_group_name = "orchestrator-db"
+elb_name = "orchestrator-test"
+swarm_master_name = "orchestrator-test-master"
+swarm_worker_name = "orchestrator-test-worker"
+swarm_worker_count = 2
+swarm_instance_type = "t2.large"
+swarm_key_name = "terraform"
