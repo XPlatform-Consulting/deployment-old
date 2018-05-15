@@ -21,15 +21,15 @@ resource "aws_security_group" "orchestrator_elb" {
 resource "aws_security_group_rule" "aurora_ingress_01" {
   // Allow all traffic within the group for RDS access
   type                     = "ingress"
-  from_port                = 5432
-  to_port                  = 5432
-  protocol                 = "tcp"
+  from_port                = 3306
+  to_port                  = 3306
+  protocol                 = "-1"
   security_group_id        = "${aws_security_group.orchestrator_aurora.id}"
   source_security_group_id = "${aws_security_group.orchestrator_ha.id}"
 }
 resource "aws_security_group_rule" "elb_ingress_01" {
   from_port = 80
-  protocol = "tcp"
+  protocol = "-1"
   security_group_id = "${aws_security_group.orchestrator_elb.id}"
   to_port = 80
   type = "ingress"
@@ -37,7 +37,7 @@ resource "aws_security_group_rule" "elb_ingress_01" {
 }
 resource "aws_security_group_rule" "elb_ingress_02" {
   from_port = 443
-  protocol = "tcp"
+  protocol = "-1"
   security_group_id = "${aws_security_group.orchestrator_elb.id}"
   to_port = 443
   type = "ingress"
