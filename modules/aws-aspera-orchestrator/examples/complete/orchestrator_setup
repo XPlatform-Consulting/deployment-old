@@ -1,0 +1,36 @@
+---
+:remote_mysql_password: password
+:mysql_is_local: false
+:base_port: 3000
+:remote_mysql_hostname: localhost
+:streamlined: true
+:setup_complete: true
+:task_status:
+  Enabling orchestrator: :completed
+:remote_mysql_port: 3306
+:new_ruby: true
+:process_id:
+:enabled: true
+:version: ""
+:detailed: true
+:uri_namespace: /aspera/orchestrator
+:remote_mysql_user: orchestrator
+:force_new_branding: true
+:mongrel_count: "3"
+:apache:
+  :hostname: localhost
+  :enabled: true
+  :detailed: false
+  :ip: 0.0.0.0
+  :log_level: error
+  :ssl_cert: g
+  :ssl_enabled: true
+  :setup_complete: false
+  :admin_email: admin@localhost
+  :server_name: Apache HTTPD Server (Aspera)
+  :http_port: 80
+  :httpd_account: ashttpd
+  :https_port: 443
+  :process_id:
+  :balancer_port: 8080
+  :use_ssl_chain_file: false

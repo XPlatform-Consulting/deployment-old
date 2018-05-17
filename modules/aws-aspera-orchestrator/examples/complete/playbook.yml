@@ -1,0 +1,91 @@
+---
+  - name: Install Orchestrator
+    hosts: all
+    remote_user: ec2-user
+
+    vars_prompt:
+      - name: "username"
+        prompt: "What is your username to download Aspera?"
+        private: yes
+      - name: "password"
+        prompt: "What is your password to download Aspera?"
+        private: yes
+
+    tasks:
+      - name: Download Aspera Common
+        get_url:
+          url: https://download.asperasoft.com/download/sw/common/1.2.24/aspera-common-1.2.24.155514-0.x86_64.rpm
+          dest: /home/ec2-user/aspera-common-1.2.24.155514-0.x86_64.rpm
+          url_password: '{{ password }}'
+          url_username: '{{ username }}'
+
+      - name: Download Aspera Orchestrator
+        get_url:
+          url: https://download.asperasoft.com/download/sw/orchestrator/3.1.0/aspera-orchestrator-3.1.0.301731-0.x86_64.rpm
+          dest: /home/ec2-user/aspera-orchestrator-3.1.0.301731-0.x86_64.rpm
+          url_password: '{{ password }}'
+          url_username: '{{ username }}'
+
+      - name: Yum install
+        yum: update_cache=yes name=libXft.x86_64 state=present
+        become: true
+
+      - name: Install Aspera Common
+        yum:
+          name: /home/ec2-user/aspera-common-1.2.24.155514-0.x86_64.rpm
+          state: present
+        become: true
+
+      - name: Install Aspera Orchestrator
+        yum:
+          name: /home/ec2-user/aspera-orchestrator-3.1.0.301731-0.x86_64.rpm
+          state: present
+        become: true
+
+  - name: Init Orchestrator
+    hosts: all
+    gather_facts: False
+    remote_user: ec2-user
+    vars_prompt:
+      - name: "sqluser"
+        prompt: "What is the username for the Aspera database?"
+        private: yes
+      - name: "sqlpass"
+        prompt: "What is the password for the Aspera database?"
+        private: yes
+      - name: "sqlhost"
+        prompt: "What is the endpoint for the Aspera database?"
+    tasks:
+      - name: Copy orchestrator_setup
+        copy:
+          src: ./orchestrator_setup
+          dest: /home/ec2-user/orchestrator_setup
+          owner: ec2-user
+          group: ec2-user
+          mode: 0644
+
+      - name: Replace sql user
+        replace:
+          path: /home/ec2-user/orchestrator_setup
+          regexp: ':remote_mysql_user: .*'
+          replace: ':remote_mysql_user: {{ sqluser }}'
+
+      - name: Replace sql pass
+        replace:
+          path: /home/ec2-user/orchestrator_setup
+          regexp: ':remote_mysql_password: .*'
+          replace: ':remote_mysql_password: {{ sqlpass }}'
+
+      - name: Replace sql host
+        replace:
+          path: /home/ec2-user/orchestrator_setup
+          regexp: ':remote_mysql_hostname: .*'
+          replace: ':remote_mysql_hostname: {{ sqlhost }}'
+
+      - name: Setup Aspera Orchestrator
+        command: asctl orchestrator:setup_from_file /home/ec2-user/orchestrator_setup
+        become: yes
+
+      - name: Start Aspera Orchestrator
+        command: asctl orchestrator:start
+        become: yes

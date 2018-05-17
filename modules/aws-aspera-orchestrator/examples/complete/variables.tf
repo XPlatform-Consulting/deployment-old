@@ -1,3 +1,4 @@
+variable "region_id" {}
 variable "vpc_id" {}
 variable "subnet_1" {}
 variable "subnet_2" {}
