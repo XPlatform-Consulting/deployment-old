@@ -16,56 +16,56 @@ module "aws-portal-services" {
   private-subnets = ["${var.subnet_1}", "${var.subnet_2}"]
 
   #Portal Elasticsearch
-  elasticsearch_domain_name = "portal"
-  elasticsearch_instnace_type = "t2.small.elasticsearch"
+  elasticsearch_domain_name = "${var.portal_elasticsearch_domain_name}"
+  elasticsearch_instnace_type = "${var.portal_elasticsearch_instance_size}"
   elasticsearch_ebs_enabled = true
   elasticsearch_volume_type = "gp2"
   elasticsearch_volume_size = 10
   elasticsearch_rest_index = "true"
-  elasticsearch_automated_snapshot_start_hour = "23"
+  elasticsearch_automated_snapshot_start_hour = "${var.portal_elasticsearch_snapshot_start_hour}"
   elasticsearch_subnet = ["${var.subnet_1}"]
 
   #Portal Elasticache
-  elasticache_cluster_port = "11211"
-  elasticache_subnet_group = "elasticache-subnet-group"
-  elasticache_cluser_id = "elasticcache"
-  elasticache_node_type = "cache.t2.micro"
-  num_cache_nodes = 1
+  elasticache_cluster_port = "${var.portal_elasticache_cluster_port}"
+  elasticache_subnet_group = "${var.portal_elasticache_subnet_group_name}"
+  elasticache_cluser_id = "${var.portal_elasticache_cluster_id}"
+  elasticache_node_type = "${var.portal_elasticache_node_size}"
+  num_cache_nodes = "${var.portal_elasticache_node_count}"
   parameter_group_name = "default.memcached1.4"
 
   #Activiti RDS Cluster
-  activiti_cluster_identifier = "actvitidb"
-  activiti_database_name = "activitidb"
+  activiti_cluster_identifier = "${var.activiti_rds_cluster_identifier}"
+  activiti_database_name = "${var.activiti_rds_cluster_database_name}"
   activiti_engine_type = "aurora-postgresql"
-  activiti_instance_count = 2
+  activiti_instance_count = "${var.activiti_rds_cluster_instance_count}"
   activiti_master_password = "${var.activiti_rds_master_password}"
   activiti_master_username = "${var.activiti_rds_master_username}"
-  activiti_rds_instance_class = "db.r4.large"
-  activiti_subnet_group_name = "activitidb"
+  activiti_rds_instance_class = "${var.activiti_rds_cluster_instance_type}"
+  activiti_subnet_group_name = "${var.activiti_rds_cluster_subnet_group_name}"
 
   #Portal RDS Cluster
-  cluster_identifier = "portaldb"
+  cluster_identifier = "${var.portal_rds_cluster_identifier}"
   engine_type = "aurora-postgresql"
-  database_name = "portaldb"
+  database_name = "${var.portal_rds_cluster_database_name}"
   master_username = "${var.portal_rds_master_username}"
   master_password = "${var.portal_rds_master_password}"
-  instance_count = 2
-  rds_instance_class = "db.r4.large"
-  subnet_group_name = "portaldb"
+  instance_count = "${var.portal_rds_cluster_instance_count}"
+  rds_instance_class = "${var.portal_rds_cluster_instance_type}"
+  subnet_group_name = "${var.portal_rds_cluster_subnet_group_name}"
 
   #Vidispine
   #vidi_availability_zones = ["us-east-1a", "us-east-1b"]
-  vidi_cluster_identifier = "vididb"
-  vidi_database_name = "vididb"
+  vidi_cluster_identifier = "${var.vidi_rds_cluster_identifier}"
+  vidi_database_name = "${var.vidi_rds_cluster_database_name}"
   vidi_engine_type = "aurora-postgresql"
   #vidi_engine_version = "9.6"
-  vidi_instance_count = 2
+  vidi_instance_count = "${var.vidi_rds_cluster_instance_count}"
   vidi_master_password = "${var.vidi_rds_master_password}"
   vidi_master_username = "${var.vidi_rds_master_username}"
-  vidi_rds_instance_class = "db.r4.large"
-  vidi_subnet_group_name = "vididb"
-  vidi_broker_name = "vidispine-mq"
-  vidi_broker_instance_type = "mq.t2.micro"
+  vidi_rds_instance_class = "${var.vidi_rds_cluster_instance_size}"
+  vidi_subnet_group_name = "${var.vidi_rds_cluster_subnet_group_name}"
+  vidi_broker_name = "${var.vidi_broker_name}"
+  vidi_broker_instance_type = "${var.vidi_broker_instace_type}"
   vidi_broker_username = "${var.vidi_broker_username}"
   vidi_broker_password = "${var.vidi_broker_password}"
   vidi_broker_subnet_ids = ["${var.subnet_1}"]
