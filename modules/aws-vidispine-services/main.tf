@@ -4,11 +4,11 @@ resource "aws_security_group" "vidispine" {
   name = "Vidispine app security group."
 }
 
-resource "aws_security_group" "vidispine_elasticsearch_cluster" {
-  name        = "vidispine Elasticsearch security group."
-  description = "vidispine Elasticsearch security group."
-  vpc_id      = "${var.vpc_id}"
-}
+#resource "aws_security_group" "vidispine_elasticsearch_cluster" {
+#  name        = "vidispine Elasticsearch security group."
+#  description = "vidispine Elasticsearch security group."
+#  vpc_id      = "${var.vpc_id}"
+#}
 
 resource "aws_security_group" "vidispine_rds_cluster" {
   name        = "vidispine RDS security group."
@@ -22,15 +22,15 @@ resource "aws_security_group" "vidispine_amazonmq" {
   vpc_id      = "${var.vpc_id}"
 }
 
-resource "aws_security_group_rule" "vidispine_elasticsearch_cluster_ingress_01" {
-  // Allow all traffic within the group for Elasticsearch access
-  type                     = "ingress"
-  from_port                = "-0"
-  to_port                  = "-0"
-  protocol                 = "-1"
-  security_group_id        = "${aws_security_group.vidispine_elasticsearch_cluster.id}"
-  source_security_group_id = "${aws_security_group.vidispine.id}"
-}
+#resource "aws_security_group_rule" "vidispine_elasticsearch_cluster_ingress_01" {
+#  // Allow all traffic within the group for Elasticsearch access
+#  type                     = "ingress"
+#  from_port                = "-0"
+#  to_port                  = "-0"
+#  protocol                 = "-1"
+#  security_group_id        = "${aws_security_group.vidispine_elasticsearch_cluster.id}"
+#  source_security_group_id = "${aws_security_group.vidispine.id}"
+#}
 
 resource "aws_security_group_rule" "vidispine_rds_cluster_ingress_01" {
   // Allow all traffic within the group for RDS access
