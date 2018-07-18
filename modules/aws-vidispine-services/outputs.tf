@@ -1,9 +1,6 @@
 output "vidispine_security_group" {
   value = "${aws_security_group.vidispine.id}"
 }
-output "elasticsearch_cluster_security_group" {
-  value = "${aws_security_group.vidispine_elasticsearch_cluster.id}"
-}
 output "rds_cluster_security_group" {
   value = "${aws_security_group.vidispine_rds_cluster.id}"
 }

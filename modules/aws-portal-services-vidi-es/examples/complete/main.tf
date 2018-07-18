@@ -104,3 +104,6 @@ output "vidi_broker_endpoints" {
 output "activiti_rds_cluster_endpoint" {
   value = "${module.aws-portal-services.activiti_rds_cluster_endpoint}"
 }
+output "vidispine_elasticsearch_endpoint" {
+  value = "${module.aws-portal-services.vidi_elasticsearch_endpoint}"
+}
