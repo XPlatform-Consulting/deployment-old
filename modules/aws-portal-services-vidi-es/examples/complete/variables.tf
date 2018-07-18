@@ -10,6 +10,9 @@ variable "subnet_1" {
 variable "subnet_2" {
 
 }
+variable "cluster_security_group" {
+  description = "The security group of the cluster to host vidispine"
+}
 variable "portal_rds_master_password" {
 
 }

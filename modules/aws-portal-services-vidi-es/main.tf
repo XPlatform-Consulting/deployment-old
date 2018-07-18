@@ -32,6 +32,15 @@ resource "aws_security_group_rule" "elasticache_cluster_ingress_01" {
   source_security_group_id = "${aws_security_group.portal.id}"
 }
 
+resource "aws_security_group_rule" "elasticache_cluster_ingress_02" {
+  from_port = "${var.elasticache_cluster_port}"
+  protocol = "-1"
+  security_group_id = "${aws_security_group.portal_elasticache_cluster.id}"
+  to_port = "${var.elasticache_cluster_port}"
+  type = "ingress"
+  source_security_group_id = "${var.cluster_security_group}"
+}
+
 resource "aws_security_group_rule" "elasticsearch_cluster_ingress_01" {
   // Allow all traffic within the group for Elasticsearch access
   type                     = "ingress"
@@ -42,6 +51,15 @@ resource "aws_security_group_rule" "elasticsearch_cluster_ingress_01" {
   source_security_group_id = "${aws_security_group.portal.id}"
 }
 
+resource "aws_security_group_rule" "elasticsearch_cluster_ingress_02" {
+  from_port = "-0"
+  protocol = "-1"
+  security_group_id = "${aws_security_group.portal_elasticsearch_cluster.id}"
+  to_port = "-0"
+  type = "ingress"
+  source_security_group_id = "${var.cluster_security_group}"
+}
+
 resource "aws_security_group_rule" "rds_cluster_ingress_01" {
   // Allow all traffic within the group for RDS access
   type                     = "ingress"
@@ -50,6 +68,15 @@ resource "aws_security_group_rule" "rds_cluster_ingress_01" {
   protocol                 = "-1"
   security_group_id        = "${aws_security_group.portal_rds_cluster.id}"
   source_security_group_id = "${aws_security_group.portal.id}"
+}
+
+resource "aws_security_group_rule" "rds_cluster_ingress_02" {
+  from_port = 5432
+  protocol = "-1"
+  security_group_id = "${aws_security_group.portal_rds_cluster.id}"
+  to_port = 5432
+  type = "ingress"
+  source_security_group_id = "${var.cluster_security_group}"
 }
 
 
@@ -132,4 +159,5 @@ module "aws-vidispine-services-es" {
   vidi_elasticsearch_rest_index = "${var.vidi_elasticsearch_rest_index}"
   vidi_elasticsearch_automated_snapshot_start_hour = "${var.vidi_elasticsearch_automated_snapshot_start_hour}"
   vidi_elasticsearch_subnet = ["${var.vidi_elasticsearch_subnet}"]
+  cluster_security_group = "${var.cluster_security_group}"
 }

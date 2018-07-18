@@ -32,6 +32,15 @@ resource "aws_security_group_rule" "vidispine_elasticsearch_cluster_ingress_01" 
   source_security_group_id = "${aws_security_group.vidispine.id}"
 }
 
+resource "aws_security_group_rule" "vidispine_elasticsearch_cluster_ingress_02" {
+  from_port = "-0"
+  protocol = "-1"
+  security_group_id = "${aws_security_group.vidispine_elasticsearch_cluster.id}"
+  to_port = "-0"
+  type = "ingress"
+  source_security_group_id = "${var.cluster_security_group}"
+}
+
 resource "aws_security_group_rule" "vidispine_rds_cluster_ingress_01" {
   // Allow all traffic within the group for RDS access
   type                     = "ingress"
@@ -42,6 +51,15 @@ resource "aws_security_group_rule" "vidispine_rds_cluster_ingress_01" {
   source_security_group_id = "${aws_security_group.vidispine.id}"
 }
 
+resource "aws_security_group_rule" "vidispine_rds_cluster_ingress_02" {
+  from_port = 5432
+  protocol = "-1"
+  security_group_id = "${aws_security_group.vidispine_rds_cluster.id}"
+  to_port = 5437
+  type = "ingress"
+  source_security_group_id = "${var.cluster_security_group}"
+}
+
 resource "aws_security_group_rule" "vidispine_amazonmq_ingress_01" {
   type = "ingress"
   from_port = "-0"
@@ -49,6 +67,15 @@ resource "aws_security_group_rule" "vidispine_amazonmq_ingress_01" {
   protocol = "-1"
   security_group_id = "${aws_security_group.vidispine_amazonmq.id}"
   source_security_group_id = "${aws_security_group.vidispine.id}"
+}
+
+resource "aws_security_group_rule" "vidispine_amazonmq_ingress_02" {
+  from_port = "-0"
+  protocol = "-1"
+  security_group_id = "${aws_security_group.vidispine_amazonmq.id}"
+  to_port = "-0"
+  type = "ingress"
+  source_security_group_id = "${var.cluster_security_group}"
 }
 
 module "aws-elasticsearch" {

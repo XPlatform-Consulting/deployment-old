@@ -14,6 +14,7 @@ module "aws-portal-services" {
   source = "../../"
   vpc_id = "${var.vpc_id}"
   private-subnets = ["${var.subnet_1}", "${var.subnet_2}"]
+  cluster_security_group = "${var.cluster_security_group}"
 
   #Portal Elasticsearch
   elasticsearch_domain_name = "${var.portal_elasticsearch_domain_name}"

@@ -6,6 +6,10 @@ variable "private_subnet_ids" {
   description = "A list of VPC subnet IDs."
 }
 
+variable "cluster_security_group" {
+  description = "The security group of the cluster to host vidispine"
+}
+
 #RDS Cluster
 variable "vidi_cluster_identifier" {
   description = "Cluster Identifier"

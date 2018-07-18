@@ -4,6 +4,10 @@ variable "private-subnets" {
   description = "A list of VPC subnet IDs."
 }
 
+variable "cluster_security_group" {
+  description = "The security group of the cluster to host vidispine"
+}
+
 #Elasticsearch
 variable "elasticsearch_domain_name" {
   description = "Name of the domain."
