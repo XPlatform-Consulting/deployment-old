@@ -34,4 +34,4 @@ vidi_rds_cluster_instance_count = 2
 vidi_rds_cluster_instance_size = ""
 vidi_rds_cluster_subnet_group_name = ""
 vidi_broker_name = ""
-vidi_broker_instace_type = ""
+vidi_broker_instance_type = ""

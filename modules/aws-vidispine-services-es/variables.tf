@@ -26,7 +26,7 @@ variable "vidi_master_password" {
   description = "Password for the master DB user."
 }
 variable "vidi_instance_count" {
-  description = "The number of instaces to run"
+  description = "The number of instances to run"
   default = 2
 }
 variable "vidi_rds_instance_class" {
@@ -44,7 +44,7 @@ variable "vidi_broker_name" {
   default = "vidispinemq"
 }
 variable "vidi_broker_instance_type" {
-  description = "The type of instace used for the Vidispine broker"
+  description = "The type of instance used for the Vidispine broker"
   default = "mq.t2.micro"
 }
 variable "vidi_broker_username" {

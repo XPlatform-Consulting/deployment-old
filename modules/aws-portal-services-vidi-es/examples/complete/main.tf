@@ -66,7 +66,7 @@ module "aws-portal-services" {
   vidi_rds_instance_class = "${var.vidi_rds_cluster_instance_size}"
   vidi_subnet_group_name = "${var.vidi_rds_cluster_subnet_group_name}"
   vidi_broker_name = "${var.vidi_broker_name}"
-  vidi_broker_instance_type = "${var.vidi_broker_instace_type}"
+  vidi_broker_instance_type = "${var.vidi_broker_instance_type}"
   vidi_broker_username = "${var.vidi_broker_username}"
   vidi_broker_password = "${var.vidi_broker_password}"
   vidi_broker_subnet_ids = ["${var.subnet_1}"]

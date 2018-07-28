@@ -19,7 +19,7 @@ variable "aurora_instance_class" {
   description = "The instance class to use."
 }
 variable "aurora_instance_count" {
-  description = "The number of instaces to run"
+  description = "The number of instances to run"
 }
 variable "aurora_subnet_group_name" {
   description = "The name of the DB subnet group."
@@ -27,15 +27,15 @@ variable "aurora_subnet_group_name" {
 
 #EC2 Instace
 variable "ec2_ami" {
-  description = "The AMI to be used on the EC2 instace. Amazon linux is recomended."
+  description = "The AMI to be used on the EC2 instance. Amazon linux is recomended."
 }
 variable "ec2_name" {
-  description = "The name of the ec2 instaces to be created"
+  description = "The name of the ec2 instances to be created"
 }
-variable "ec2_instace_type" {
-  description = "The type of ec2 instace to be created"
+variable "ec2_instance_type" {
+  description = "The type of ec2 instance to be created"
   default = "m5. large"
 }
 variable "ec2_key_name" {
-  description = "The name of the key to be used to connect to the ec2 instaces"
+  description = "The name of the key to be used to connect to the ec2 instances"
 }

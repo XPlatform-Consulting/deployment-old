@@ -7,7 +7,7 @@ variable "broker_type" {
 variable "broker_version" {
 
 }
-variable "broker_instace_type" {
+variable "broker_instance_type" {
 
 }
 variable "broker_security_groups" {

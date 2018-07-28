@@ -33,6 +33,6 @@ module "envoi" {
   ec2_count = "1"
   ec2_key_name = "dame-dashdev"
   ec2_subnet_id = ""
-  ec2_instace_type = "t2.micro"
+  ec2_instance_type = "t2.micro"
 }
 ```

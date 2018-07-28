@@ -107,7 +107,7 @@ module "aws-ec2" {
   version = "1.3.0"
   name = "${var.ec2_name}"
   ami = "${var.ec2_ami}"
-  instance_type = "${var.ec2_instace_type}"
+  instance_type = "${var.ec2_instance_type}"
   key_name = "${var.ec2_key_name}"
   monitoring = "true"
   vpc_security_group_ids = ["${aws_security_group.orchestrator.id}"]

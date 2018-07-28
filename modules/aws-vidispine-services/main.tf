@@ -72,7 +72,7 @@ module "aws-amazonmq" {
   broker_name = "${var.vidi_broker_name}"
   broker_type = "ActiveMQ"
   broker_version = "5.15.0"
-  broker_instace_type = "${var.vidi_broker_instance_type}"
+  broker_instance_type = "${var.vidi_broker_instance_type}"
   broker_security_groups = "${aws_security_group.vidispine_amazonmq.id}"
   broker_username = "${var.vidi_broker_username}"
   broker_password = "${var.vidi_broker_password}"

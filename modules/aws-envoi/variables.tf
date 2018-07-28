@@ -58,7 +58,7 @@ variable "availability_zones" {
   description = "A list of EC2 Availability Zones that instances in the DB cluster can be created in."
 }
 variable "instance_count" {
-  description = "The number of instaces to run"
+  description = "The number of instances to run"
 }
 variable "rds_instance_class" {
   description = "The instance class to use."
@@ -74,7 +74,7 @@ variable "ec2_name" {
 variable "ec2_count" {
 
 }
-variable "ec2_instace_type" {
+variable "ec2_instance_type" {
 
 }
 variable "ec2_key_name" {

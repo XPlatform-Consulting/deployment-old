@@ -85,7 +85,7 @@ module "aws-ec2" {
   name = "${var.ec2_name}"
   count = "${var.ec2_count}"
   ami = "${data.aws_ami.amazon_linux.id}"
-  instance_type = "${var.ec2_instace_type}"
+  instance_type = "${var.ec2_instance_type}"
   key_name = "${var.ec2_key_name}"
   monitoring = "true"
   vpc_security_group_ids = "${aws_security_group.envoi.id}"

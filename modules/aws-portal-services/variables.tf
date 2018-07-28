@@ -68,7 +68,7 @@ variable "master_password" {
   description = "Password for the master DB user."
 }
 variable "instance_count" {
-  description = "The number of instaces to run"
+  description = "The number of instances to run"
 }
 variable "rds_instance_class" {
   description = "The instance class to use."
@@ -94,7 +94,7 @@ variable "activiti_master_password" {
   description = "Password for the master DB user."
 }
 variable "activiti_instance_count" {
-  description = "The number of instaces to run"
+  description = "The number of instances to run"
 }
 variable "activiti_rds_instance_class" {
   description = "The instance class to use."
@@ -127,7 +127,7 @@ variable "vidi_master_password" {
 #  description = "A list of EC2 Availability Zones that instances in the DB cluster can be created in."
 #}
 variable "vidi_instance_count" {
-  description = "The number of instaces to run"
+  description = "The number of instances to run"
 }
 variable "vidi_rds_instance_class" {
   description = "The instance class to use."
@@ -141,7 +141,7 @@ variable "vidi_broker_name" {
   description = "The name of the broker created for Vidispine"
 }
 variable "vidi_broker_instance_type" {
-  description = "The type of instace used for the Vidispine broker"
+  description = "The type of instance used for the Vidispine broker"
 }
 variable "vidi_broker_username" {
   description = "The username for the Vidispine broker"

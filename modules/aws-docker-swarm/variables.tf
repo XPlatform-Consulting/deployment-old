@@ -15,7 +15,7 @@ variable "ec2_master_name" {
 variable "ec2_worker_name" {
 
 }
-variable "ec2_instace_type" {
+variable "ec2_instance_type" {
 
 }
 variable "ec2_key_name" {

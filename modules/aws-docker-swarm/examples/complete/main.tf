@@ -18,7 +18,7 @@ module "aws-docker-swarm" {
   ec2_worker_name = "swarm_worker"
   master_count = "1"
   worker_count= "2"
-  ec2_instace_type = "m5.large"
+  ec2_instance_type = "m5.large"
   ec2_key_name = "damedash-dev"
   security_group_ids = ["sg-cdb1ff84", "sg-0cb7f945"]
 }
