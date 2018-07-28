@@ -27,7 +27,7 @@ variable "aurora_subnet_group_name" {
 
 #EC2 Instace
 variable "ec2_ami" {
-  description = "The AMI to be used on the EC2 instance. Amazon linux is recomended."
+  description = "The AMI to be used on the EC2 instance. Amazon linux is recommended."
 }
 variable "ec2_name" {
   description = "The name of the ec2 instances to be created"
