@@ -11,7 +11,7 @@ variable "elasticsearch_domain_name" {
 variable "elasticsearch_version" {
   description = "The version of ElasticSearch to deploy."
 }
-variable "elasticsearch_instnace_type" {
+variable "elasticsearch_instance_type" {
   description = "Instance type of data nodes in the cluster."
 }
 variable "elasticsearch_ebs_enabled" {
@@ -58,7 +58,7 @@ variable "availability_zones" {
   description = "A list of EC2 Availability Zones that instances in the DB cluster can be created in."
 }
 variable "instance_count" {
-  description = "The number of instaces to run"
+  description = "The number of instances to run"
 }
 variable "rds_instance_class" {
   description = "The instance class to use."
@@ -67,14 +67,14 @@ variable "subnet_group_name" {
   description = "The name of the DB subnet group."
 }
 
-#EC2 Instace
+#EC2 instance
 variable "ec2_name" {
 
 }
 variable "ec2_count" {
 
 }
-variable "ec2_instace_type" {
+variable "ec2_instance_type" {
 
 }
 variable "ec2_key_name" {

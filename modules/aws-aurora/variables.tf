@@ -19,7 +19,7 @@ variable "master_password" {
 }
 
 variable "instance_count" {
-  description = "The number of instaces to run"
+  description = "The number of instances to run"
 }
 
 variable "instance_class" {

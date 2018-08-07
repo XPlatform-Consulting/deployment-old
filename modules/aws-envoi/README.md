@@ -10,7 +10,7 @@ module "envoi" {
   #Elasticsearch
   elasticsearch_domain_name = "envoi-portal"
   elasticsearch_version = "1.5"
-  elasticsearch_instnace_type = "t2.small.elasticsearch"
+  elasticsearch_instance_type = "t2.small.elasticsearch"
   elasticsearch_ebs_enabled = true
   elasticsearch_volume_type = "gp2"
   elasticsearch_volume_size = 10
@@ -33,6 +33,6 @@ module "envoi" {
   ec2_count = "1"
   ec2_key_name = "dame-dashdev"
   ec2_subnet_id = ""
-  ec2_instace_type = "t2.micro"
+  ec2_instance_type = "t2.micro"
 }
 ```

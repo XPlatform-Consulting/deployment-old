@@ -39,7 +39,7 @@ module "aws-ec2-worker" {
   version = "1.3.0"
   name = "${var.ec2_worker_name}"
   ami = "${data.aws_ami.ubuntu.id}"
-  instance_type = "${var.ec2_instace_type}"
+  instance_type = "${var.ec2_instance_type}"
   key_name = "${var.ec2_key_name}"
   monitoring = "true"
   vpc_security_group_ids = ["${aws_security_group.swarm.id}", "${var.security_group_ids}"]
@@ -54,7 +54,7 @@ module "aws-ec2-master" {
   version = "1.3.0"
   name = "${var.ec2_master_name}"
   ami = "${data.aws_ami.ubuntu.id}"
-  instance_type = "${var.ec2_instace_type}"
+  instance_type = "${var.ec2_instance_type}"
   key_name = "${var.ec2_key_name}"
   monitoring = "true"
   vpc_security_group_ids = ["${aws_security_group.swarm.id}", "${var.security_group_ids}"]

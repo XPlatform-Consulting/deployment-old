@@ -23,7 +23,7 @@ variable "aurora_instance_class" {
   description = "The instance class to use."
 }
 variable "aurora_instance_count" {
-  description = "The number of instaces to run"
+  description = "The number of instances to run"
 }
 variable "aurora_subnet_group_name" {
   description = "The name of the DB subnet group."

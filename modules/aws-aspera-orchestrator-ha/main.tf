@@ -110,7 +110,7 @@ module "aws-docker-swarm"  {
   ec2_worker_name = "${var.swarm_worker_name}"
   master_count = "1"
   worker_count= "${var.swarm_worker_count}"
-  ec2_instace_type = "${var.swarm_instance_type}"
+  ec2_instance_type = "${var.swarm_instance_type}"
   ec2_key_name = "${var.swarm_key_name}"
   security_group_ids = ["${aws_security_group.orchestrator_ha.id}"]
 }

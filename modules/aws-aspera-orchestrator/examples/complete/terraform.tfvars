@@ -11,5 +11,5 @@ aurora_instance_count = 2
 aurora_subnet_group_name = "orchestrator-db"
 ec2_ami = "ami-922914f7"
 ec2_name = "Orchestrator"
-ec2_instace_type = "t2.medium"
+ec2_instance_type = "t2.medium"
 ec2_key_name = "terraform"

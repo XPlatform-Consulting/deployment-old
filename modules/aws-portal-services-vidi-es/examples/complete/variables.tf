@@ -61,7 +61,7 @@ variable "vidi_rds_cluster_instance_count" {}
 variable "vidi_rds_cluster_instance_size" {}
 variable "vidi_rds_cluster_subnet_group_name" {}
 variable "vidi_broker_name" {}
-variable "vidi_broker_instace_type" {}
+variable "vidi_broker_instance_type" {}
 variable "vidi_elasticsearch_domain_name" {}
-variable "vidi_elasticsearch_instnace_type" {}
+variable "vidi_elasticsearch_instance_type" {}
 variable "vidi_elasticsearch_automated_snapshot_start_hour" {}
