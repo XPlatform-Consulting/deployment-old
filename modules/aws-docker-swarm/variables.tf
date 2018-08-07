@@ -10,13 +10,13 @@ variable "master_count" {
 
 #EC2 instance
 variable "ec2_master_name" {
-
+  default = "swarm_master"
 }
 variable "ec2_worker_name" {
-
+  default = "swarm_worker"
 }
 variable "ec2_instance_type" {
-
+  default = "m5.large"
 }
 variable "ec2_key_name" {
 
