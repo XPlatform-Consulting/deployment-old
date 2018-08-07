@@ -8,7 +8,7 @@ variable "master_count" {
   default = 1
 }
 
-#EC2 
+#EC2 instance
 variable "ec2_master_name" {
 
 }

@@ -25,9 +25,9 @@ variable "aurora_subnet_group_name" {
   description = "The name of the DB subnet group."
 }
 
-#EC2 
+#EC2 instance
 variable "ec2_ami" {
-  description = "The AMI to be used on the EC2 instance. Amazon linux is recommended."
+  description = "The AMI to be used on the EC2 instance. Amazon linux is recomended."
 }
 variable "ec2_name" {
   description = "The name of the ec2 instances to be created"

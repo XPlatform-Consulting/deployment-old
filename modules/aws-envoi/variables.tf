@@ -67,7 +67,7 @@ variable "subnet_group_name" {
   description = "The name of the DB subnet group."
 }
 
-#EC2 
+#EC2 instance
 variable "ec2_name" {
 
 }
