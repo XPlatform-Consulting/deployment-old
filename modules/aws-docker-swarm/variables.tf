@@ -8,7 +8,7 @@ variable "master_count" {
   default = 1
 }
 
-#EC2 Instace
+#EC2 
 variable "ec2_master_name" {
 
 }

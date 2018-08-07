@@ -67,7 +67,7 @@ variable "subnet_group_name" {
   description = "The name of the DB subnet group."
 }
 
-#EC2 Instace
+#EC2 
 variable "ec2_name" {
 
 }
