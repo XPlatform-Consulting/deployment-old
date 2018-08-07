@@ -17,7 +17,7 @@ module "aws-portal-services" {
 
   #Portal Elasticsearch
   elasticsearch_domain_name = "${var.portal_elasticsearch_domain_name}"
-  elasticsearch_instnace_type = "${var.portal_elasticsearch_instance_size}"
+  elasticsearch_instance_type = "${var.portal_elasticsearch_instance_size}"
   elasticsearch_ebs_enabled = true
   elasticsearch_volume_type = "gp2"
   elasticsearch_volume_size = 10

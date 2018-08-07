@@ -11,7 +11,7 @@ module "portal" {
 
   #Portal Elasticsearch
   elasticsearch_domain_name = "portal"
-  elasticsearch_instnace_type = "t2.small.elasticsearch"
+  elasticsearch_instance_type = "t2.small.elasticsearch"
   elasticsearch_ebs_enabled = true
   elasticsearch_volume_type = "gp2"
   elasticsearch_volume_size = 10

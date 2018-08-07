@@ -5,7 +5,7 @@ resource "aws_elasticsearch_domain" "default" {
   domain_name           = "${var.elasticsearch_domain_name}"
   elasticsearch_version = "${var.elasticsearch_version}"
   cluster_config {
-    instance_type = "${var.elasticsearch_instnace_type}"
+    instance_type = "${var.elasticsearch_instance_type}"
   }
 
   ebs_options {

@@ -10,7 +10,7 @@ module "envoi" {
   #Elasticsearch
   elasticsearch_domain_name = "envoi-portal"
   elasticsearch_version = "1.5"
-  elasticsearch_instnace_type = "t2.small.elasticsearch"
+  elasticsearch_instance_type = "t2.small.elasticsearch"
   elasticsearch_ebs_enabled = true
   elasticsearch_volume_type = "gp2"
   elasticsearch_volume_size = 10

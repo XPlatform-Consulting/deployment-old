@@ -12,7 +12,7 @@ variable "cluster_security_group" {
 variable "elasticsearch_domain_name" {
   description = "Name of the domain."
 }
-variable "elasticsearch_instnace_type" {
+variable "elasticsearch_instance_type" {
   description = "Instance type of data nodes in the cluster."
 }
 variable "elasticsearch_ebs_enabled" {
@@ -162,7 +162,7 @@ variable "vidi_broker_subnet_ids" {
 variable "vidi_elasticsearch_domain_name" {
   description = "Name of the domain."
 }
-variable "vidi_elasticsearch_instnace_type" {
+variable "vidi_elasticsearch_instance_type" {
   description = "Instance type of data nodes in the cluster."
 }
 variable "vidi_elasticsearch_ebs_enabled" {

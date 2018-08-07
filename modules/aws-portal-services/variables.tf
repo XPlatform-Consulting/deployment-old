@@ -8,7 +8,7 @@ variable "private-subnets" {
 variable "elasticsearch_domain_name" {
   description = "Name of the domain."
 }
-variable "elasticsearch_instnace_type" {
+variable "elasticsearch_instance_type" {
   description = "Instance type of data nodes in the cluster."
 }
 variable "elasticsearch_ebs_enabled" {

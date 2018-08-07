@@ -58,7 +58,7 @@ variable "vidi_broker_password" {
 variable "vidi_elasticsearch_domain_name" {
   description = "Name of the domain."
 }
-variable "vidi_elasticsearch_instnace_type" {
+variable "vidi_elasticsearch_instance_type" {
   description = "Instance type of data nodes in the cluster."
 }
 variable "vidi_elasticsearch_ebs_enabled" {

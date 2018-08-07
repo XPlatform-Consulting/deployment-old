@@ -18,7 +18,7 @@ module "aws-portal-services" {
 
   #Portal Elasticsearch
   elasticsearch_domain_name = "${var.portal_elasticsearch_domain_name}"
-  elasticsearch_instnace_type = "${var.portal_elasticsearch_instance_size}"
+  elasticsearch_instance_type = "${var.portal_elasticsearch_instance_size}"
   elasticsearch_ebs_enabled = true
   elasticsearch_volume_type = "gp2"
   elasticsearch_volume_size = 10
@@ -71,7 +71,7 @@ module "aws-portal-services" {
   vidi_broker_password = "${var.vidi_broker_password}"
   vidi_broker_subnet_ids = ["${var.subnet_1}"]
   vidi_elasticsearch_domain_name = "${var.vidi_elasticsearch_domain_name}"
-  vidi_elasticsearch_instnace_type = "${var.vidi_elasticsearch_instnace_type}"
+  vidi_elasticsearch_instance_type = "${var.vidi_elasticsearch_instance_type}"
   vidi_elasticsearch_ebs_enabled = true
   vidi_elasticsearch_volume_type = "gp2"
   vidi_elasticsearch_volume_size = 10

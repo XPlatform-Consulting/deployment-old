@@ -11,7 +11,7 @@ variable "elasticsearch_domain_name" {
 variable "elasticsearch_version" {
   description = "The version of ElasticSearch to deploy."
 }
-variable "elasticsearch_instnace_type" {
+variable "elasticsearch_instance_type" {
   description = "Instance type of data nodes in the cluster."
 }
 variable "elasticsearch_ebs_enabled" {

@@ -69,7 +69,7 @@ module "aws-elasticsearch" {
   source = "../aws-elasticsearch"
   elasticsearch_domain_name = "${var.elasticsearch_domain_name}"
   elasticsearch_version = "${var.elasticsearch_version}"
-  elasticsearch_instnace_type = "${var.elasticsearch_instnace_type}"
+  elasticsearch_instance_type = "${var.elasticsearch_instance_type}"
   elasticsearch_ebs_enabled = "${var.elasticsearch_ebs_enabled}"
   elasticsearch_volume_type = "${var.elasticsearch_volume_type}"
   elasticsearch_volume_size = "${var.elasticsearch_volume_size}"
