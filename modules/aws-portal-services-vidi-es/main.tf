@@ -125,7 +125,7 @@ module "aws-elasticache" {
 module "aws-elasticsearch" {
   source = "../aws-elasticsearch"
   elasticsearch_domain_name = "${var.elasticsearch_domain_name}"
-  elasticsearch_version = "1.5"
+  elasticsearch_version = "6.2"
   elasticsearch_instance_type = "${var.elasticsearch_instance_type}"
   elasticsearch_ebs_enabled = "${var.elasticsearch_ebs_enabled}"
   elasticsearch_volume_type = "${var.elasticsearch_volume_type}"
