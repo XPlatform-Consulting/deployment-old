@@ -15,7 +15,7 @@ variable "vpc_subnet_count" {
 
 variable "ingress_cidr_blocks" {
   description = "Work station CIDR IP blocks that can access the EKS API server"
-  type = list
+  type = "list"
 }
 
 variable "worker-size" {
