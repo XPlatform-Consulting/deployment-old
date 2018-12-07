@@ -48,6 +48,9 @@ resource "aws_launch_configuration" "workers" {
   name_prefix                 = "${var.cluster-name}-worker-nodes"
   security_groups             = ["${aws_security_group.worker-node.id}"]
   user_data_base64            = "${base64encode(local.worker-node-userdata)}"
+  root_block_device {
+    volume_size = 60
+  }
 
   lifecycle {
     create_before_destroy = true
