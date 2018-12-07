@@ -21,7 +21,8 @@ variable "num_cache_nodes" {
  description = "The initial number of cache nodes that the cache cluster will have."
 }
 variable "parameter_group_name" {
-  default = "Name of the parameter group to associate with this cache cluster."
+  description = "Name of the parameter group to associate with this cache cluster."
+  default = "memcached1.5"
 }
 variable "elasticache_security_group_id" {
   type = "list"
