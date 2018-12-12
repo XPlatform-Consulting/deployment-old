@@ -1,17 +1,20 @@
 variable "aws_region" {
 
 }
-variable "vpc_id" {
-
+variable "eks_worker_size" {
+  default = "t2.xlarge"
 }
-variable "subnet_1" {
-
+variable "eks_worker_desired_capacity" {
+  default = "3"
 }
-variable "subnet_2" {
-
+variable "eks_worker_max_capacity" {
+  default = "4"
 }
-variable "cluster_security_group" {
-  description = "The security group of the cluster to host vidispine"
+variable "eks_worker_min_capacity" {
+  default = "1"
+}
+variable "eks_ingress_cidr_block" {
+
 }
 variable "portal_rds_master_password" {
 

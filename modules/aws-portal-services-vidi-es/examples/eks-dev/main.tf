@@ -76,11 +76,11 @@ module "portal-eks" {
   source = "../../../aws-eks"
   cluster-name = "Portal-EKS-Dev"
   vpc_subnet_count = "3"
-  ingress_cidr_blocks = ["67.172.147.63/32"]
-  worker-size = "t2.xlarge"
-  worker_desired_capacity = "3"
-  worker_max_capacity = "4"
-  worker_min_capacity = "1"
+  ingress_cidr_blocks = ["${var.eks_ingress_cidr_block}"]
+  worker-size = "${var.eks_worker_size}"
+  worker_desired_capacity = "${var.eks_worker_desired_capacity}"
+  worker_max_capacity = "${var.eks_worker_max_capacity}"
+  worker_min_capacity = "${var.eks_worker_min_capacity}"
 }
 
 locals {
