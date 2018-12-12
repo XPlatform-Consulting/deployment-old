@@ -83,6 +83,36 @@ module "portal-eks" {
   worker_min_capacity = "1"
 }
 
+locals {
+  portal_config = <<PORTALCONFIG
+
+
+apiVersion: v1
+data:
+    #Vidispine
+    ACTIVEMQ_BROKER_URL: ${element(module.aws-portal-services.vidi_broker_endpoints, 0)}
+    VIDISPINE_ELASTICSEARCH_URL: https://${module.aws-portal-services.vidi_elasticsearch_endpoint}/
+    VIDISPINE_DATABASE_HOST: ${module.aws-portal-services.vidi_rds_cluster_endpoint}
+    VIDISPINE_DATABASE_NAME: vidispinedb
+    JAVA_OPTS: "-Xmx8192m"
+    AWS_REGION: ${var.aws_region}
+    S3_URI_THUMBNAIL_STORAGE: none
+    S3_URI_GENERAL_STORAGE: none
+    S3_URI_HOTFOLDER_STORAGE: none
+    TRANSCODE_UUID: none
+    #Portal
+    ACTIVITI_DATABASE_HOST: ${module.aws-portal-services.activiti_rds_cluster_endpoint}
+    ACTIVITI_DATABASE_NAME: actvitidb
+    PORTAL_DATABASE_HOST: ${module.aws-portal-services.portal_rds_cluster_endpoint}
+    PORTAL_DATABASE_NAME: portaldb
+    ELASTICSEARCH_HOST: https://${module.aws-portal-services.portal_elasticsearch_endpoint}:443/
+    MEMCACHED_HOST: ${module.aws-portal-services.portal_elasticache_endpoint}
+kind: ConfigMap
+metadata:
+  name: vidispine-portal
+PORTALCONFIG
+}
+
 output "portal_security_group" {
   value = "${module.aws-portal-services.portal_security_group}"
 }
@@ -112,4 +142,7 @@ output "vidispine_elasticsearch_endpoint" {
 }
 output "config_map_aws_auth" {
   value = "${module.portal-eks.config_map_aws_auth}"
+}
+output "portal_kubeconfig" {
+  value = "${local.portal_config}"
 }
