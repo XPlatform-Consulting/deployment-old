@@ -1,0 +1,43 @@
+Parameters:
+  StorageCapacity:
+    Type: String
+    Default: 300
+
+  Throughput:
+    Type: String
+    Default: 8
+    AllowedValues:
+      - 8
+      - 16
+      - 32
+      - 64
+      - 128
+      - 256
+      - 512
+      - 1024
+      - 2048
+
+  ActiveDirectoryId:
+    Type: String
+
+  SubnetIds:
+    Type: List<AWS::EC2::Subnet::Id>
+
+  SecurityGroups:
+    Type: List<AWS::EC2::SecurityGroup::Id>
+
+Resources:
+  Storage:
+    Type: "AWS::FSx::FileSystem"
+    Properties:
+      FileSystemType: "WINDOWS"
+      StorageCapacity: !Ref StorageCapacity
+      SubnetIds: !Ref SubnetIds
+      SecurityGroupIds: !Ref SecurityGroups
+      WindowsConfiguration:
+        ActiveDirectoryId: !Ref ActiveDirectoryId
+        ThroughputCapacity: !Ref Throughput
+        WeeklyMaintenanceStartTime: "4:16:30"
+        DailyAutomaticBackupStartTime: "01:00"
+        AutomaticBackupRetentionDays: 2
+        CopyTagsToBackups: false
