@@ -1,0 +1,26 @@
+---
+Description: "Create a basic AmazonMQ broker"
+Parameters:
+  Engine:
+    Description: ''
+  CacheNodeType:
+    Description: ''
+  NumCacheNodes:
+    Description: ''
+  CachePort:
+    Description: ''
+    Default: 11211
+  PreferredAvailabilityZones:
+    Description: ''
+  VpcSecurityGroupIds:
+    Description: ''
+Resources:
+  ElasticacheCluster:
+    Type: AWS::ElastiCache::CacheCluster
+    Properties:
+      AutoMinorVersionUpgrade: "true"
+      Engine: !Ref Engine
+      CacheNodeType: !Ref CacheNodeType
+      NumCacheNodes: !Ref NumCacheNodes
+      VpcSecurityGroupIds: !Ref VpcSecurityGroupIds
+      Port: !Ref CachePort

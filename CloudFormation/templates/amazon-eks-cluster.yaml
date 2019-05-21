@@ -1,0 +1,28 @@
+---
+Parameters:
+  ClusterName:
+    Description: ''
+    Type: String
+  ClusterRole:
+    Description: ''
+    Type: String
+  SecurityGroup:
+    Description:
+    Type: String
+  EKSClusterSubnets:
+    Description: The subnets to place database instances in.
+    Type: List<AWS::EC2::Subnet::Id>
+Resources:
+  Cluster:
+    Type: "AWS::EKS::Cluster"
+    Properties:
+      Name: !Ref ClusterName
+      Version: "1.10"
+      RoleArn: !Ref ClusterRole
+      ResourcesVpcConfig:
+        SecurityGroupIds:
+          - !Ref SecurityGroup
+        SubnetIds:
+          - !Ref Subnet1
+          - !Ref Subnet2
+          - !Ref Subnet3

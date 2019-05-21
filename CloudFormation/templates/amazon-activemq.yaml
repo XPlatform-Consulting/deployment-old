@@ -1,0 +1,44 @@
+---
+Description: "Create a basic AmazonMQ broker"
+Parameters:
+  BrokerName:
+    Description: ''
+    Type: String
+  BrokerSize:
+    Description: ''
+    Type: String
+  BrokerUser:
+    Description: ''
+    Type: String
+  BrokerPass:
+    Description: ''
+    Type: String
+  SecurityGroup:
+    Description: ''
+    Type: String
+  AmazonMQSubnets:
+    Description: The subnets to place database instances in.
+    Type: List<AWS::EC2::Subnet::Id>
+Resources:
+  BasicBroker:
+    Type: "AWS::AmazonMQ::Broker"
+    Properties:
+      AutoMinorVersionUpgrade: "false"
+      BrokerName: !Ref BrokerName
+      DeploymentMode: SINGLE_INSTANCE
+      EngineType: ActiveMQ
+      EngineVersion: "5.15.0"
+      HostInstanceType: !Ref BrokerSize
+      PubliclyAccessible: "true"
+      SecurityGroups:
+        - !Ref SecurityGroup
+      SubnetIds:
+        - !Ref Subnet1
+        - !Ref Subnet2
+      Users:
+        -
+          ConsoleAccess: "true"
+          Groups:
+            - MyGroup
+          Password: !Ref BrokerPass
+          Username: !Ref BrokerUser

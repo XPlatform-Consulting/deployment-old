@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: An API that proxies requests to another HTTP endpoint
+
+Resources:
+  Api:
+    Type: 'AWS::ApiGateway::RestApi'
+    Properties:
+      Name: SomeProxyApi
+
+  Resource:
+    Type: 'AWS::ApiGateway::Resource'
+    Properties:
+      ParentId: !GetAtt Api.RootResourceId
+      RestApiId: !Ref Api
+      PathPart: '{proxy+}'
+
+  RootMethod:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      HttpMethod: ANY
+      ResourceId: !GetAtt Api.RootResourceId
+      RestApiId: !Ref Api
+      AuthorizationType: NONE
+      Integration:
+        IntegrationHttpMethod: ANY
+        Type: AWS
+        Uri: http://my-imaginary-bucket.s3-website-eu-west-1.amazonaws.com/
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+
+  ProxyMethod:
+    Type: 'AWS::ApiGateway::Method'
+    Properties:
+      HttpMethod: ANY
+      ResourceId: !Ref Resource
+      RestApiId: !Ref Api
+      AuthorizationType: NONE
+      RequestParameters:
+        method.request.path.proxy: true
+      Integration:
+        CacheKeyParameters:
+          - 'method.request.path.proxy'
+        RequestParameters:
+          integration.request.path.proxy: 'method.request.path.proxy'
+        IntegrationHttpMethod: ANY
+        Type: AWS
+        Uri: http://my-imaginary-bucket.s3-website-eu-west-1.amazonaws.com/{proxy}
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+
+  Deployment:
+    DependsOn:
+      - RootMethod
+      - ProxyMethod
+    Type: 'AWS::ApiGateway::Deployment'
+    Properties:
+      RestApiId: !Ref Api
+      StageName: !Ref StageName

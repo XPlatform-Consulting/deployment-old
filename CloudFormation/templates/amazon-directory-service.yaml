@@ -1,0 +1,11 @@
+Resources:
+  AD:
+    Type: AWS::DirectoryService::MicrosoftAD
+    Properties:
+      Name: "corp.example.com"
+      Password: Password123
+      ShortName: testad
+      VpcSettings:
+        SubnetIds:
+          -
+        VpcId:

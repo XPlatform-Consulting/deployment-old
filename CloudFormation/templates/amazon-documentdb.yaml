@@ -1,0 +1,71 @@
+Description:  "AWS CloudFormation Template DocumentDB."
+
+Parameters:
+  DBClusterName:
+    Default: "MyCluster"
+    Description : "Cluster name"
+    Type: "String"
+    MinLength: "1"
+    MaxLength: "64"
+    AllowedPattern : "[a-zA-Z][a-zA-Z0-9]*(-[a-zA-Z0-9]+)*"
+    ConstraintDescription : "Must begin with a letter and contain only alphanumeric characters."
+
+  DBInstanceName:
+    Default: "MyInstance"
+    Description : "Instance name"
+    Type: "String"
+    MinLength: "1"
+    MaxLength: "64"
+    AllowedPattern : "[a-zA-Z][a-zA-Z0-9]*(-[a-zA-Z0-9]+)*"
+    ConstraintDescription : "Must begin with a letter and contain only alphanumeric characters."
+
+  MasterUser:
+    NoEcho: "true"
+    Description : "The database admin account username"
+    Type: "String"
+    MinLength: "1"
+    MaxLength: "16"
+    AllowedPattern: "[a-zA-Z][a-zA-Z0-9]*"
+    ConstraintDescription : "Must begin with a letter and contain only alphanumeric characters."
+
+  MasterPassword:
+    NoEcho: "true"
+    Description : "The database admin account password"
+    Type: "String"
+    MinLength: "1"
+    MaxLength: "41"
+    AllowedPattern : "[a-zA-Z0-9]+"
+    ConstraintDescription : "must contain only alphanumeric characters."
+
+Resources:
+  DBCluster:
+    Type: "AWS::DocDB::DBCluster"
+    DeletionPolicy: Delete
+    Properties:
+      DBClusterIdentifier: !Ref DBClusterName
+      MasterUsername: !Ref MasterUser
+      MasterUserPassword: !Ref MasterPassword
+
+  DBInstance:
+    Type: "AWS::DocDB::DBInstance"
+    Properties:
+      DBClusterIdentifier: !Ref DBCluster
+      DBInstanceIdentifier: !Ref DBInstanceName
+      DBInstanceClass: "db.r4.large"
+    DependsOn: DBCluster
+
+Outputs:
+  ClusterId:
+    Value: !Ref DBCluster
+  ClusterEndpoint:
+    Value: !GetAtt DBCluster.Endpoint
+  ClusterReadEndpoint:
+    Value: !GetAtt DBCluster.ReadEndpoint
+  ClusterPort:
+    Value: !GetAtt DBCluster.Port
+  InstanceId:
+    Value: !Ref DBInstance
+  InstancePort:
+    Value: !GetAtt DBInstance.Port
+  InstanceEndpoint:
+    Value: !GetAtt DBInstance.Endpoint
