@@ -1,11 +1,21 @@
+Parameters:
+  Name:
+    Type: String
+  Password:
+    Type: String
+  ShortName:
+    Type: String
+  VPC:
+    Type: AWS::EC2::VPC::Id
+  SubnetIDs:
+    Type: List<AWS::EC2::Subnet::Id>
 Resources:
   AD:
     Type: AWS::DirectoryService::MicrosoftAD
     Properties:
-      Name: "corp.example.com"
-      Password: Password123
-      ShortName: testad
+      Name: !Ref Name
+      Password: !Ref Password
+      ShortName: !Ref ShortName
       VpcSettings:
-        SubnetIds:
-          -
-        VpcId:
+        SubnetIds: !Ref SubnetIDs
+        VpcId: !Ref VPC
