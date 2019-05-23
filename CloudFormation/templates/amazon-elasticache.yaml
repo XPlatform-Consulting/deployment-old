@@ -1,4 +1,3 @@
----
 Description: "Create a basic AmazonMQ broker"
 Parameters:
   Engine:

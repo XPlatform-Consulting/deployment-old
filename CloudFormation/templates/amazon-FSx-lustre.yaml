@@ -1,0 +1,33 @@
+Parameters:
+  StorageCapacity:
+    Type: String
+    Default: 3500
+
+  ImportPath:
+    Type: String
+
+  ExportPath:
+    Type: String
+
+  SubnetIds:
+    Type: List<AWS::EC2::Subnet::Id>
+
+  SecurityGroups:
+    Type: List<AWS::EC2::SecurityGroup::Id>
+
+  WeeklyMaintenanceStartTime:
+    Type: String
+    Default: mon:03:00
+
+Resources:
+  Storage:
+    Type: "AWS::FSx::FileSystem"
+    Properties:
+      FileSystemType: "LUSTRE"
+      StorageCapacity: !Ref StorageCapacity
+      SubnetIds: !Ref SubnetIds
+      SecurityGroupIds: !Ref SecurityGroups
+      LustreConfiguration:
+        ExportPath: !Ref ExportPath
+        ImportPath: !Ref ImportPath
+        WeeklyMaintenanceStartTime:
