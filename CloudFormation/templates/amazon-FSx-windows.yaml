@@ -20,10 +20,13 @@ Parameters:
   ActiveDirectoryId:
     Type: String
 
+  VPCID:
+    Type: AWS::EC2::VPC::Id
+
   SubnetIds:
     Type: List<AWS::EC2::Subnet::Id>
 
-  SecurityGroups:
+  WorkstationSecurityGroup:
     Type: List<AWS::EC2::SecurityGroup::Id>
 
 Resources:
@@ -41,3 +44,29 @@ Resources:
         DailyAutomaticBackupStartTime: "01:00"
         AutomaticBackupRetentionDays: 2
         CopyTagsToBackups: false
+  SecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Enable FSx Access from subnet
+      VpcId: !Ref VPCID
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '445'
+          ToPort: '445'
+          SourceSecurityGroupId: !Ref WorkstationSecurityGroup
+        - IpProtocol: udp
+          FromPort: '445'
+          ToPort: '445'
+          SourceSecurityGroupId: !Ref WorkstationSecurityGroup
+        - IpProtocol: tcp
+          FromPort: '135'
+          ToPort: '135'
+          SourceSecurityGroupId: !Ref WorkstationSecurityGroup
+        - IpProtocol: tcp
+          FromPort: '1024'
+          ToPort: '65535'
+          SourceSecurityGroupId: !Ref WorkstationSecurityGroup
+        - IpProtocol: udp
+          FromPort: '1024'
+          ToPort: '65535'
+          SourceSecurityGroupId: !Ref WorkstationSecurityGroup
