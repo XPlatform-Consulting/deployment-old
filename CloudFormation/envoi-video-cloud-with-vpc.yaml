@@ -261,7 +261,9 @@ Resources:
       Parameters:
         StorageCapacity: !Ref FSxStorageCapacity
         Throughput: !Ref FSxThroughput
-        ActiveDirectoryId:
+        ActiveDirectoryId: !GetAtt
+          - ADStack
+          - DirectoryID
         VPCID: !GetAtt
           - VPCStack
           - Outputs.VPCID
