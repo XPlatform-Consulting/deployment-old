@@ -1,33 +1,75 @@
 Parameters:
   StorageCapacity:
     Type: String
-    Default: 3500
+    Default: 300
 
-  ImportPath:
+  Throughput:
+    Type: String
+    Default: 8
+    AllowedValues:
+      - 8
+      - 16
+      - 32
+      - 64
+      - 128
+      - 256
+      - 512
+      - 1024
+      - 2048
+
+  ActiveDirectoryId:
     Type: String
 
-  ExportPath:
+  VPCID:
+    Type: AWS::EC2::VPC::Id
+
+  PrivateSubnet1ID:
     Type: String
 
-  SubnetIds:
-    Type: List<AWS::EC2::Subnet::Id>
+  PrivateSubnet2ID:
+    Type: String
 
-  SecurityGroups:
+  WorkstationSecurityGroup:
     Type: List<AWS::EC2::SecurityGroup::Id>
-
-  WeeklyMaintenanceStartTime:
-    Type: String
-    Default: mon:03:00
 
 Resources:
   Storage:
     Type: "AWS::FSx::FileSystem"
     Properties:
-      FileSystemType: "LUSTRE"
+      FileSystemType: "WINDOWS"
       StorageCapacity: !Ref StorageCapacity
       SubnetIds: !Ref SubnetIds
       SecurityGroupIds: !Ref SecurityGroups
-      LustreConfiguration:
-        ExportPath: !Ref ExportPath
-        ImportPath: !Ref ImportPath
-        WeeklyMaintenanceStartTime:
+      WindowsConfiguration:
+        ActiveDirectoryId: !Ref ActiveDirectoryId
+        ThroughputCapacity: !Ref Throughput
+        WeeklyMaintenanceStartTime: "4:16:30"
+        DailyAutomaticBackupStartTime: "01:00"
+        AutomaticBackupRetentionDays: 2
+        CopyTagsToBackups: false
+  SecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Enable FSx Access from subnet
+      VpcId: !Ref VPCID
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '445'
+          ToPort: '445'
+          SourceSecurityGroupId: !Ref WorkstationSecurityGroup
+        - IpProtocol: udp
+          FromPort: '445'
+          ToPort: '445'
+          SourceSecurityGroupId: !Ref WorkstationSecurityGroup
+        - IpProtocol: tcp
+          FromPort: '135'
+          ToPort: '135'
+          SourceSecurityGroupId: !Ref WorkstationSecurityGroup
+        - IpProtocol: tcp
+          FromPort: '1024'
+          ToPort: '65535'
+          SourceSecurityGroupId: !Ref WorkstationSecurityGroup
+        - IpProtocol: udp
+          FromPort: '1024'
+          ToPort: '65535'
+          SourceSecurityGroupId: !Ref WorkstationSecurityGroup
