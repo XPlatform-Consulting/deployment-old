@@ -257,7 +257,7 @@ Resources:
   FSxStack:
     Tyoe: 'AWS::CloudFormation::Stack'
     Properties:
-      TemplateURL:
+      TemplateURL: https://s3.amazonaws.com/envoi-quickstart/envoi-cloud-studio/aws/templates/templates/amazon-FSx-lustre.yaml
       Parameters:
         StorageCapacity: !Ref FSxStorageCapacity
         Throughput: !Ref FSxThroughput
