@@ -255,7 +255,7 @@ Rules:
         AssertDescription: Amazon G3 instances are not currently supported in this region
 Resources:
   FSxStack:
-    Tyoe: 'AWS::CloudFormation::Stack'
+    Type: 'AWS::CloudFormation::Stack'
     Properties:
       TemplateURL: https://s3.amazonaws.com/envoi-quickstart/envoi-cloud-studio/aws/templates/templates/amazon-FSx-lustre.yaml
       Parameters:
@@ -263,7 +263,7 @@ Resources:
         Throughput: !Ref FSxThroughput
         ActiveDirectoryId: !GetAtt
           - ADStack
-          - DirectoryID
+          - Outputs.DirectoryID
         VPCID: !GetAtt
           - VPCStack
           - Outputs.VPCID
