@@ -23,8 +23,11 @@ Parameters:
   VPCID:
     Type: AWS::EC2::VPC::Id
 
-  SubnetIds:
-    Type: List<AWS::EC2::Subnet::Id>
+  PrivateSubnet1ID:
+    Type: String
+
+  PrivateSubnet2ID:
+    Type: String
 
   WorkstationSecurityGroup:
     Type: List<AWS::EC2::SecurityGroup::Id>
@@ -35,7 +38,11 @@ Resources:
     Properties:
       FileSystemType: "WINDOWS"
       StorageCapacity: !Ref StorageCapacity
-      SubnetIds: !Ref SubnetIds
+      SubnetIds: !Join
+        - ''
+        - - 'arn:'
+          - !Ref PrivateSubnet1ID
+          - !Ref PrivateSubnet2ID
       SecurityGroupIds: !Ref SecurityGroups
       WindowsConfiguration:
         ActiveDirectoryId: !Ref ActiveDirectoryId
