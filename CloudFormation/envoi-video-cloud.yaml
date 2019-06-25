@@ -240,6 +240,12 @@ Parameters:
       - 512
       - 1024
       - 2048
+  VPCID:
+    Type: AWS::EC2::VPC::Id
+  PrivateSubnet1AID:
+    Type: AWS::EC2::Subnet::Id
+  PrivateSubnet2AID:
+    Type: AWS::EC2::Subnet::Id
 Rules:
   G3NotSupportedRegionsRule:
     Assertions:
@@ -264,36 +270,13 @@ Resources:
         ActiveDirectoryId: !GetAtt
           - ADStack
           - Outputs.DirectoryID
-        VPCID: !GetAtt
-          - VPCStack
-          - Outputs.VPCID
-        PrivateSubnet1ID: !GetAtt
-          - VPCStack
-          - Outputs.PrivateSubnet1AID
-        PrivateSubnet2ID: !GetAtt
-          - VPCStack
-          - Outputs.PrivateSubnet2AID
+        VPCID: !Ref VPCID
+        PrivateSubnet1ID: !Ref PrivateSubnet1AID
+        PrivateSubnet2ID: !Ref PrivateSubnet2AID
         WorkstationSecurityGroup: !GetAtt
           - ADStack
           - Outputs.DomainMemberSGID
-  VPCStack:
-    Type: 'AWS::CloudFormation::Stack'
-    Properties:
-      TemplateURL: !Sub >-
-        https://${QSS3BucketName}.s3.amazonaws.com/${QSS3KeyPrefix}submodules/quickstart-aws-vpc/templates/aws-vpc.template
-      Parameters:
-        AvailabilityZones: !Join
-          - ','
-          - !Ref AvailabilityZones
-        KeyPairName: !Ref KeyPairName
-        NumberOfAZs: '2'
-        PrivateSubnet1ACIDR: !Ref PrivateSubnet1CIDR
-        PrivateSubnet2ACIDR: !Ref PrivateSubnet2CIDR
-        PublicSubnet1CIDR: !Ref PublicSubnet1CIDR
-        PublicSubnet2CIDR: !Ref PublicSubnet2CIDR
-        VPCCIDR: !Ref VPCCIDR
   ADStack:
-    DependsOn: VPCStack
     Type: 'AWS::CloudFormation::Stack'
     Properties:
       TemplateURL: !Sub >-
@@ -303,20 +286,14 @@ Resources:
         DomainDNSName: !Ref DomainDNSName
         DomainNetBIOSName: !Ref DomainNetBIOSName
         PrivateSubnet1CIDR: !Ref PrivateSubnet1CIDR
-        PrivateSubnet1ID: !GetAtt
-          - VPCStack
-          - Outputs.PrivateSubnet1AID
+        PrivateSubnet1ID: !Ref PrivateSubnet1AID
         PrivateSubnet2CIDR: !Ref PrivateSubnet2CIDR
-        PrivateSubnet2ID: !GetAtt
-          - VPCStack
-          - Outputs.PrivateSubnet2AID
+        PrivateSubnet2ID: !Ref PrivateSubnet2AID
         PublicSubnet1CIDR: !Ref PublicSubnet1CIDR
         PublicSubnet2CIDR: !Ref PublicSubnet2CIDR
         QSS3BucketName: !Ref QSS3BucketName
         QSS3KeyPrefix: !Sub '${QSS3KeyPrefix}submodules/quickstart-microsoft-activedirectory/'
-        VPCID: !GetAtt
-          - VPCStack
-          - Outputs.VPCID
+        VPCID: !Ref VPCID
         VPCCIDR: !Ref VPCCIDR
   CloudVFXHostStack:
     DependsOn: ADStack
@@ -336,15 +313,9 @@ Resources:
         VFXHostInstanceType: !Ref VFXHostInstanceType
         KeyPairName: !Ref KeyPairName
         NumberOfVFXHosts: !Ref NumberOfVFXHosts
-        PublicSubnet1ID: !GetAtt
-          - VPCStack
-          - Outputs.PublicSubnet1ID
-        PublicSubnet2ID: !GetAtt
-          - VPCStack
-          - Outputs.PublicSubnet1ID
+        PublicSubnet1ID: !Ref PrivateSubnet1AID
+        PublicSubnet2ID: !Ref PrivateSubnet2AID
         QSS3BucketName: !Ref QSS3BucketName
         QSS3KeyPrefix: !Ref QSS3KeyPrefix
-        VPCID: !GetAtt
-          - VPCStack
-          - Outputs.VPCID
+        VPCID: !Ref VPCID
         VFXHostAccessCIDR: !Ref VFXHostAccessCIDR
